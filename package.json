@@ -1,0 +1,79 @@
+{
+  "name": "structuro",
+  "displayName": "Structuro",
+  "description": "An extension to save file/folder structure to a text file.",
+  "version": "0.0.7",
+  "icon": "images/logo.png",
+  "publisher": "structuro",
+  "engines": {
+    "vscode": "^1.93.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:extension.saveFileFolderStructure",
+    "onCommand:extension.saveOpenTabsStructure",
+    "onCommand:extension.analyzeAllFiles"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.saveFileFolderStructure",
+        "title": "Save File/Folder Structure",
+        "category": "File Management"
+      },
+      {
+        "command": "extension.saveOpenTabsStructure",
+        "title": "Save Open Tabs Structure",
+        "category": "File Management"
+      },
+      {
+        "command": "extension.analyzeAllFiles",
+        "title": "Analyze All Files",
+        "category": "Code Analysis"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "extension.saveFileFolderStructure",
+          "when": "resourceLangId != ''",
+          "group": "navigation"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "extension.saveOpenTabsStructure",
+        "key": "ctrl+alt+s",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "extension.analyzeAllFiles",
+        "key": "ctrl+alt+a",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.93.0",
+    "@types/mocha": "^10.0.7",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.3.0",
+    "@typescript-eslint/parser": "^8.3.0",
+    "eslint": "^9.9.1",
+    "typescript": "^5.5.4",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1"
+  }
+}
